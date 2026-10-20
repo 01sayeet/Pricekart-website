@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PriceKart – India's Price Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#faf7f2;--card:#fff;--ink:#1f2a30;--mut:#7b7a72;--line:#e7e2d8;--btn:#1f2a30;--bi:#fff;--acc:#8a5a2b;--good:#2f7d3b;--tag:#efe9dc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#14181b;--card:#1d2327;--ink:#eee9df;--mut:#9aa1a4;--line:#2c3439;--btn:#f1ece0;--bi:#14181b;--acc:#d9a066;--good:#6cc27a;--tag:#2a3237}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#14181b;--card:#1d2327;--ink:#eee9df;--mut:#9aa1a4;--line:#2c3439;--btn:#f1ece0;--bi:#14181b;--acc:#d9a066;--good:#6cc27a;--tag:#2a3237}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:12px 20px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;font-size:24px;font-weight:600;border:0;background:none;padding:0}
+.logo i{width:30px;height:30px;border-radius:8px;background:var(--btn);color:var(--bi);display:grid;place-items:center;font:600 15px Inter}
+nav{display:flex;gap:4px}
+nav button{border:0;background:none;padding:7px 12px;border-radius:8px;color:var(--mut);font-weight:500}
+nav button.on{background:var(--tag);color:var(--ink)}
+#q{flex:1;min-width:150px;max-width:340px;margin-left:auto;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+.ic{position:relative;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card)}
+.ic b{position:absolute;top:-6px;right:-6px;background:var(--acc);color:#fff;border-radius:99px;font-size:11px;min-width:18px;padding:1px 4px}
+.av{width:36px;height:36px;border-radius:50%;background:var(--btn);color:var(--bi);border:0;font-weight:600}
+main{max-width:1180px;margin:0 auto;padding:22px 20px 90px}
+.hero{padding:10px 0 6px}
+.hero h1{font-size:clamp(34px,6vw,54px);line-height:1.02;margin:0 0 8px;font-weight:600}
+.hero p{margin:0;color:var(--mut)}
+.sh{display:flex;justify-content:space-between;align-items:end;margin:30px 0 14px;gap:10px;flex-wrap:wrap}
+.sh h2{font-size:28px;margin:0;font-weight:600}.sh small{display:block;color:var(--mut);font:13px Inter}
+.link{border:0;background:none;border-bottom:1px solid var(--mut);color:var(--mut);padding:0 0 2px;font-size:12px;letter-spacing:.08em}
+select{padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);font:inherit}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.img{position:relative;height:170px;display:grid;place-items:center;font-size:76px;cursor:pointer}
+.pill{position:absolute;top:10px;left:10px;background:var(--card);color:var(--ink);font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px}
+.sv{position:absolute;top:10px;right:10px;background:var(--acc);color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px}
+.heart{position:absolute;bottom:10px;right:10px;width:30px;height:30px;border-radius:50%;border:0;background:var(--card);font-size:15px}
+.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.br{font-size:11px;color:var(--mut)}.nm{font:600 19px "Cormorant Garamond",Georgia,serif}
+.st{color:#d9a13b;font-size:12px}.st span{color:var(--mut);margin-left:4px}
+.pr{display:flex;justify-content:space-between;align-items:end}.pr strong{font:600 24px "Cormorant Garamond",Georgia,serif}
+.pr em{font-style:normal;color:var(--good);font-weight:600;font-size:13px}
+.cmp{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12px}
+.cmp div{display:flex;justify-content:space-between;padding:3px 0}.cmp .b{color:var(--good);font-weight:600}
+.row{display:flex;gap:8px;margin-top:auto}
+.btn{flex:1;padding:10px;border-radius:9px;border:1px solid var(--line);background:var(--card);font-weight:500}
+.btn.p{background:var(--btn);color:var(--bi);border-color:var(--btn)}
+.empty{padding:50px 0;text-align:center;color:var(--mut)}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:30;display:none;align-items:center;justify-content:center;padding:16px}
+.ov.on{display:flex}
+.md{background:var(--bg);border-radius:16px;max-width:460px;width:100%;max-height:92vh;overflow:auto;position:relative}
+.md .img{height:220px;cursor:default}
+.x{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;border:0;background:var(--card);z-index:2}
+.dt{padding:16px 20px 22px;display:flex;flex-direction:column;gap:10px}
+.cat{color:var(--acc);font-weight:600;font-size:13px}.big{font:600 38px "Cormorant Garamond",Georgia,serif}
+.mrp{color:var(--mut);text-decoration:line-through}.off{color:var(--good);font-weight:600;margin-left:8px}
+.store{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.store:last-child{border:0}.store small{display:block;color:var(--mut)}.store .g{color:var(--good);font-size:12px;font-weight:600;text-align:right}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:2px 14px}
+#cart{justify-content:flex-end;padding:0;align-items:stretch}
+#cart .md{border-radius:0;max-width:380px;height:100%;max-height:100%;padding:18px;display:flex;flex-direction:column}
+.ci{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.ci .t{flex:1;font-size:14px}.ci small{color:var(--mut)}.q button{width:26px;height:26px;border-radius:6px;border:1px solid var(--line);background:var(--card)}
+#chatb{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;height:48px;padding:0 18px;border-radius:99px;border:0;background:var(--btn);color:var(--bi);font-weight:600}
+#chat{position:fixed;right:18px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:20;width:min(340px,calc(100vw - 36px));height:380px;background:var(--card);border:1px solid var(--line);border-radius:14px;display:none;flex-direction:column;overflow:hidden}
+#chat.on{display:flex}#msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;font-size:13px}
+.m{padding:8px 11px;border-radius:12px;max-width:88%}.m.u{background:var(--btn);color:var(--bi);align-self:flex-end}.m.a{background:var(--tag)}
+#chat form{display:flex;gap:6px;padding:8px;border-top:1px solid var(--line)}#ci{flex:1;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.note{margin-top:34px;color:var(--mut);font-size:12px}
+@media(max-width:640px){#q{order:5;max-width:none;flex-basis:100%;margin:0}}
+.img{overflow:hidden}.img img{width:100%;height:100%;object-fit:contain;padding:8px}
+.skel{height:330px;border-radius:14px;background:linear-gradient(90deg,var(--tag),var(--line),var(--tag));background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){.skel{animation:none}}
+.stat{color:var(--mut);font-size:12px;margin:18px 0 0}.nm{line-height:1.2}
+.dt input{padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--ink);font:inherit}
+#acc{border-radius:10px}
+</style>
+</head>
+<body>
+<header>
+  <button class="logo serif" data-v="home"><i>P</i>PriceKart</button>
+  <nav id="nav"><button data-v="home">Home</button><button data-v="f">Footwear</button><button data-v="m">Mobiles</button><button data-v="s">Saved</button></nav>
+  <input id="q" type="search" placeholder="Search products or brands" aria-label="Search">
+  <button class="ic" id="cb" aria-label="Open cart">🛍<b id="cn">0</b></button>
+  <button class="ic" id="tg" aria-label="Switch theme">◐</button><button class="btn p" id="acc" style="flex:none;padding:8px 16px">Log in</button>
+</header>
+<main id="main"></main>
+<div class="ov" id="modal"><div class="md" id="mbody"></div></div>
+<div class="ov" id="cart"><div class="md" id="cbody"></div></div>
+<button id="chatb">Ask PriceKart</button>
+<div id="chat"><div id="msgs"></div><form id="cf"><input id="ci" placeholder="Ask about the products on screen" autocomplete="off"><button class="btn p" style="flex:0 0 auto">Send</button></form></div>
+<script>
+const $=s=>document.querySelector(s),fmt=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const WL=['Amazon','Flipkart','Myntra'],isWL=s=>/amazon|flipkart|myntra/i.test(s||'');
+function ld(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
+function sv(k,v){if(S.user){push();return}try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+const S={v:'home',q:'',sort:'rel',saved:ld('pk_saved',{}),cart:ld('pk_cart',{}),data:{},cur:[],meta:null,tok:0};
+const P={};Object.values(S.saved).forEach(p=>P[p.id]=p);Object.values(S.cart).forEach(c=>P[c.p.id]=c.p);
+const CAT={f:{t:'Footwear',q:'sports shoes',sub:'Compare shoes across stores'},m:{t:'Mobiles',q:'smartphones',sub:'Compare phones across stores'}};
+async function api(u,o){const r=await fetch(u,o),j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Request failed ('+r.status+')');return j}
+async function load(q){
+  if(S.data[q])return S.data[q];
+  const j=await api('/api/search?q='+encodeURIComponent(q));j.products.forEach(p=>P[p.id]=p);S.meta=j.meta;return S.data[q]=j.products;
+}
+const stars=r=>r?'★'.repeat(Math.round(r))+'☆'.repeat(5-Math.round(r)):'';
+function card(p){
+  const sd=!!S.saved[p.id],i=esc(p.id);
+  return `<article class="card"><div class="img" style="background:#fff" data-a="det" data-id="${i}">${p.image?`<img src="${esc(p.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`:'🛍'}
+  ${isWL(p.store)?`<span class="pill">${esc(p.store)}</span>`:''}${p.pct?`<span class="sv">Save ${p.pct}%</span>`:''}
+  <button class="heart" data-a="sv" data-id="${i}" aria-label="Save">${sd?'♥':'♡'}</button></div>
+  <div class="body"><div class="nm">${esc(p.title)}</div>
+  <div class="st">${stars(p.rating)}<span>${p.rating||'No rating'}${p.reviews?' · '+esc(p.reviews)+' reviews':''}</span></div>
+  <div class="pr"><div><div class="br">${isWL(p.store)?'Best price at '+esc(p.store):'Listed price'}</div><strong>${fmt(p.price)}</strong></div>${p.mrp?`<em>You save ${fmt(p.mrp-p.price)}</em>`:''}</div>
+  ${p.range?`<div class="cmp"><div><span>Typical price range</span><span>${fmt(p.range[0])} – ${fmt(p.range[1])}</span></div></div>`:''}
+  <div class="row"><button class="btn p" data-a="add" data-id="${i}">Add to cart</button><button class="btn" data-a="det" data-id="${i}">Compare stores</button></div></div></article>`;
+}
+function list(arr){
+  const a=[...arr];
+  if(S.sort=='asc')a.sort((x,y)=>x.price-y.price);else if(S.sort=='desc')a.sort((x,y)=>y.price-x.price);else if(S.sort=='rate')a.sort((x,y)=>(y.rating||0)-(x.rating||0));
+  S.cur=S.cur.concat(a);
+  return a.length?`<div class="grid">${a.map(card).join('')}</div>`:`<div class="empty"><p class="serif" style="font-size:24px;margin:0">Nothing here yet</p>Try a different search, or save a product with the heart.</div>`;
+}
+const sortUI=()=>`<select id="so" aria-label="Sort"><option value="rel">Sort: Best match</option><option value="asc">Price: low to high</option><option value="desc">Price: high to low</option><option value="rate">Rating</option></select>`;
+const head=(t,sub,x)=>`<div class="sh"><div><h2 class="serif">${t}</h2><small>${sub}</small></div>${x||''}</div>`;
+const skel=()=>`<div class="grid">${'<div class="skel"></div>'.repeat(8)}</div><p class="stat">Fetching live prices…</p>`;
+async function render(){
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v==S.v&&!S.q));
+  const q=S.q.trim(),tok=++S.tok;S.cur=[];
+  const need=q?[q]:S.v=='home'?[CAT.f.q,CAT.m.q]:CAT[S.v]?[CAT[S.v].q]:[];
+  if(need.some(k=>!S.data[k]))$('#main').innerHTML=skel();
+  try{
+    let h='';
+    if(q){const r=await load(q);h=head(`Results for “${esc(q)}”`,`${r.length} live results`,sortUI())+list(r)}
+    else if(S.v=='home'){
+      const [f,m]=await Promise.all(need.map(load));
+      h=`<div class="hero"><h1 class="serif">Search once.<br>See every store’s price.</h1><p>Compare prices on Amazon, Flipkart and Myntra in one place.</p></div>`+
+      head('Top Footwear Deals','Popular right now','<button class="link" data-v="f">VIEW ALL</button>')+list(f.slice(0,4))+
+      head('Top Mobile Deals','Lowest prices across stores','<button class="link" data-v="m">VIEW ALL</button>')+list(m.slice(0,4));
+    }else if(S.v=='s')h=head('Saved','Products you hearted')+(S.user?'':'<p class="stat" style="margin:0 0 14px">Log in to keep your saved items and cart on every device.</p>')+list(Object.values(S.saved));
+    else h=head(CAT[S.v].t,CAT[S.v].sub,sortUI())+list(await load(CAT[S.v].q));
+    if(tok!==S.tok)return;
+    const m=S.meta;
+    $('#main').innerHTML=h+`<p class="stat">${m?`Live prices via RapidAPI · fetched in ${m.apiMs} ms${m.cached?' (cached)':''} · processed in ${m.procMs} ms. `:''}Prices change often, so confirm the final price on the store’s page.</p>`;
+    const so=$('#so');if(so){so.value=S.sort;so.onchange=e=>{S.sort=e.target.value;render()}}
+  }catch(e){if(tok===S.tok)$('#main').innerHTML=`<div class="empty"><p class="serif" style="font-size:24px;margin:0">Couldn’t load prices</p>${esc(e.message)}<br><br><button class="btn p" style="flex:none" data-a="retry">Try again</button></div>`}
+  $('#cn').textContent=Object.values(S.cart).reduce((a,c)=>a+c.qty,0);
+}
+async function detail(id){
+  const p=P[id];if(!p)return;
+  $('#mbody').innerHTML=`<button class="x" data-a="close" aria-label="Close">✕</button><div class="img" style="background:#fff">${p.image?`<img src="${esc(p.image)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:'🛍'}</div>
+  <div class="dt"><div class="cat">Compare prices</div><div class="big" style="font-size:28px">${esc(p.title)}</div>
+  <div class="st">${stars(p.rating)}<span>${p.rating||'No rating'}${p.reviews?' · '+esc(p.reviews)+' reviews':''}</span></div>
+  <div><span class="big" id="mp">${isWL(p.store)?fmt(p.price):'…'}</span></div>
+  <button class="btn p" data-a="add" data-id="${esc(id)}" style="flex:none">Add to cart</button>
+  <div class="cat" style="margin-top:8px">Make the call</div><div class="serif" style="font-size:26px;font-weight:600">Amazon, Flipkart and Myntra</div>
+  <div class="empty" id="offs">Checking Amazon, Flipkart and Myntra…</div></div>`;
+  $('#modal').classList.add('on');
+  let r;
+  try{r=p.offers?{offers:p.offers,status:p.status}:await api('/api/offers?id='+encodeURIComponent(id)+'&title='+encodeURIComponent(p.title))}
+  catch(e){r={offers:[],status:{},error:e.message}}
+  p.offers=r.offers||[];p.status=r.status||{};
+  const by={};p.offers.forEach(o=>by[o.store]=o);
+  const got=Object.values(by),lo=got.length?Math.min(...got.map(o=>o.price)):null;
+  if(lo!=null){const b=got.find(o=>o.price==lo);p.price=lo;p.store=b.store;p.link=b.link;p.mrp=null;p.pct=null}
+  $('#mp').textContent=lo!=null?fmt(lo):'Not available';
+  $('#offs').outerHTML=`<div class="box">${WL.map(n=>{const o=by[n];
+    if(!o)return `<div class="store"><div><b>${n}</b><small>${esc(p.status[n]||'Not available')}</small></div><div style="color:var(--mut)">—</div></div>`;
+    return `<a class="store" target="_blank" rel="noopener noreferrer" href="${esc(o.link||'#')}"><div><b>${n}</b><small>${o.shipping?esc(o.shipping):'Opens this product on '+n}</small></div><div><b>${fmt(o.price)}</b>${o.price==lo?'<div class="g">Best deal</div>':''}</div></a>`}).join('')}</div>`+(r.error?`<p class="stat">${esc(r.error)}</p>`:'');
+}
+function cartUI(){
+  const it=Object.values(S.cart),tot=it.reduce((a,c)=>a+c.p.price*c.qty,0);
+  $('#cbody').innerHTML=`<div class="sh" style="margin:0 0 8px"><h2 class="serif">Your cart</h2><button class="x" style="position:static" data-a="close">✕</button></div><div style="flex:1;overflow:auto">`+
+  (it.length?it.map(c=>`<div class="ci"><div class="t"><b>${esc(c.p.title)}</b><br><small>${fmt(c.p.price)}${isWL(c.p.store)?' at '+esc(c.p.store):''}</small></div><div class="q"><button data-a="dec" data-id="${esc(c.p.id)}">−</button> ${c.qty} <button data-a="add" data-id="${esc(c.p.id)}">+</button></div></div>`).join(''):`<div class="empty">Your cart is empty. Add a product to see it here.</div>`)+
+  `</div><div class="pr" style="padding-top:12px"><span>Total at best prices</span><strong>${fmt(tot)}</strong></div>`;
+}
+const cnt=()=>$('#cn').textContent=Object.values(S.cart).reduce((a,c)=>a+c.qty,0);
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-a],[data-v]');if(!t)return;
+  if(t.dataset.v){S.v=t.dataset.v;S.q='';$('#q').value='';render();scrollTo(0,0);return}
+  const a=t.dataset.a,id=t.dataset.id;
+  if(a=='det')detail(id);
+  else if(a=='retry')render();
+  else if(a=='sw')authUI(t.dataset.mode);
+  else if(a=='logout')logout();
+  else if(a=='sv'){if(S.saved[id])delete S.saved[id];else S.saved[id]=P[id];sv('pk_saved',S.saved);t.textContent=S.saved[id]?'♥':'♡';if(S.v=='s'&&!S.q)render()}
+  else if(a=='add'){const c=S.cart[id]||(S.cart[id]={p:P[id],qty:0});c.qty++;sv('pk_cart',S.cart);cnt();if($('#cart').classList.contains('on'))cartUI()}
+  else if(a=='dec'){if(--S.cart[id].qty<1)delete S.cart[id];sv('pk_cart',S.cart);cnt();cartUI()}
+  else if(a=='close'){$('#modal').classList.remove('on');$('#cart').classList.remove('on')}
+});
+['modal','cart'].forEach(i=>$('#'+i).addEventListener('click',e=>{if(e.target.id==i)e.target.classList.remove('on')}));
+$('#cb').onclick=()=>{cartUI();$('#cart').classList.add('on')};
+let dt;$('#q').oninput=e=>{clearTimeout(dt);dt=setTimeout(()=>{S.q=e.target.value;render()},450)};
+$('#tg').onclick=()=>{const r=document.documentElement,d=getComputedStyle(r).colorScheme=='dark';r.dataset.theme=d?'light':'dark'};
+function say(t,c){const d=document.createElement('div');d.className='m '+c;d.textContent=t;$('#msgs').appendChild(d);$('#msgs').scrollTop=1e9;return d}
+$('#chatb').onclick=()=>{$('#chat').classList.toggle('on');if(!$('#msgs').children.length)say('Hi! Ask me which product is the best value, or to compare what’s on your screen.','a')};
+$('#cf').onsubmit=async e=>{
+  e.preventDefault();const v=$('#ci').value.trim();if(!v)return;say(v,'u');$('#ci').value='';
+  const w=say('Thinking…','a');
+  try{const j=await api('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:v,products:S.cur.slice(0,12).map(p=>({title:p.title,price:p.price,store:p.store,rating:p.rating}))})});w.textContent=j.reply}
+  catch(err){w.textContent=err.message}
+};
+// ---------- accounts ----------
+const slimP=p=>({id:p.id,title:p.title,image:p.image,rating:p.rating,reviews:p.reviews,price:p.price,mrp:p.mrp,pct:p.pct,store:p.store,link:p.link,range:p.range});
+let pt;function push(){clearTimeout(pt);pt=setTimeout(()=>api('/api/user/data',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({saved:Object.values(S.saved).map(slimP),cart:Object.values(S.cart).map(c=>({p:slimP(c.p),qty:c.qty}))})}).catch(()=>{}),600)}
+function setAcc(){$('#acc').textContent=S.user?S.user.name.split(' ')[0]:'Log in'}
+function adopt(u){
+  const gs=S.saved,gc=S.cart;S.user={name:u.name,email:u.email};
+  S.saved={};(u.saved||[]).forEach(p=>{S.saved[p.id]=p;P[p.id]=p});
+  S.cart={};(u.cart||[]).forEach(c=>{S.cart[c.p.id]=c;P[c.p.id]=c.p});
+  Object.keys(gs).forEach(k=>{if(!S.saved[k])S.saved[k]=gs[k]});               // keep what the guest saved before logging in
+  Object.keys(gc).forEach(k=>{if(!S.cart[k])S.cart[k]=gc[k]});
+  try{localStorage.removeItem('pk_saved');localStorage.removeItem('pk_cart')}catch(e){}
+  push();setAcc();cnt();
+}
+async function logout(){
+  try{await api('/api/auth/logout',{method:'POST'})}catch(e){}
+  S.user=null;S.saved={};S.cart={};try{localStorage.removeItem('pk_saved');localStorage.removeItem('pk_cart')}catch(e){}
+  $('#modal').classList.remove('on');setAcc();cnt();render();
+}
+function authUI(mode){
+  const up=mode=='up';
+  $('#mbody').innerHTML=`<button class="x" data-a="close" aria-label="Close">✕</button><div class="dt" style="padding-top:30px">
+  <div class="big" style="font-size:32px">${up?'Create account':'Welcome back'}</div>
+  <div class="stat" style="margin:0">${up?'Save products and your cart across devices.':'Log in to see your saved items and cart.'}</div>
+  <form id="af" data-mode="${mode}" style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
+  ${up?'<input name="name" placeholder="Your name" required maxlength="60" autocomplete="name">':''}
+  <input name="email" type="email" placeholder="Email" required autocomplete="email">
+  <input name="password" type="password" placeholder="Password (8+ characters)" required minlength="8" autocomplete="${up?'new-password':'current-password'}">
+  <div id="aerr" role="alert" style="color:#e5584b;font-size:13px;min-height:18px"></div>
+  <button class="btn p" style="flex:none">${up?'Sign up':'Log in'}</button></form>
+  <button class="link" data-a="sw" data-mode="${up?'in':'up'}" style="align-self:flex-start;letter-spacing:0;font-size:13px">${up?'Already have an account? Log in':'New here? Create an account'}</button></div>`;
+  $('#modal').classList.add('on');
+}
+function accUI(){
+  const n=Object.values(S.cart).reduce((a,c)=>a+c.qty,0);
+  $('#mbody').innerHTML=`<button class="x" data-a="close" aria-label="Close">✕</button><div class="dt" style="padding-top:30px">
+  <div class="big" style="font-size:30px">${esc(S.user.name)}</div><div class="stat" style="margin:0">${esc(S.user.email)}</div>
+  <div class="stat" style="margin:0">${Object.keys(S.saved).length} saved · ${n} in cart</div>
+  <button class="btn p" data-a="logout" style="flex:none;margin-top:8px">Log out</button></div>`;
+  $('#modal').classList.add('on');
+}
+$('#acc').onclick=()=>S.user?accUI():authUI('in');
+document.addEventListener('submit',async e=>{
+  if(e.target.id!=='af')return;e.preventDefault();
+  const f=e.target,d=Object.fromEntries(new FormData(f)),b=f.querySelector('button');b.disabled=true;
+  try{const j=await api('/api/auth/'+(f.dataset.mode=='up'?'signup':'login'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+    adopt(j.user);$('#modal').classList.remove('on');render();}
+  catch(err){$('#aerr').textContent=err.message;b.disabled=false}
+});
+api('/api/auth/me').then(j=>{if(j.user)adopt(j.user)}).catch(()=>{}).finally(render);
+
+</script>
+</body>
+</html>
